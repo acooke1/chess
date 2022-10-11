@@ -36,6 +36,14 @@ func NewBoard(m map[Square]Piece) *Board {
 	return b
 }
 
+func StartingPosition() *Position {
+	position, err := decodeFen(startingPosition)
+	if err != nil {
+		panic(err)
+	}
+	return position
+}
+
 func (b *Board) GenerateMapping() map[Square]Piece {
 	m := map[Square]Piece{}
 	for i := 0; i < numberOfSquaresInBoard; i++ {

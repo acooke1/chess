@@ -10,14 +10,6 @@ const (
 	startingPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 )
 
-func StartingPosition() *Position {
-	position, err := decodeFen(startingPosition)
-	if err != nil {
-		panic(err)
-	}
-	return position
-}
-
 func fenError(message string) error {
 	return fmt.Errorf("ERROR: invalid FEN string... " + message)
 }
