@@ -12,3 +12,7 @@ type Position struct {
 	inCheck        bool
 	validMoves     []*Move
 }
+
+func (pos *Position) Board() *Board {
+	return pos.board
+}
