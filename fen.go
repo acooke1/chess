@@ -14,7 +14,7 @@ func FENError(message string) error {
 	return fmt.Errorf("ERROR: invalid FEN string... " + message)
 }
 
-func decodeFen(fen string) (*Position, error) {
+func DecodeFen(fen string) (*Position, error) {
 	components := strings.Split(fen, " ")
 	if len(components) != 6 {
 		return nil, FENError("FEN string has more than 6 parts")
