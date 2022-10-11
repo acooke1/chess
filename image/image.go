@@ -26,7 +26,7 @@ var (
 )
 
 // TODO: wrap w param into a struct
-func generateBoardSVG(b *chess.Board, w http.ResponseWriter) {
+func GenerateBoardSVG(b *chess.Board, w http.ResponseWriter) {
 	//pieceMap := b.generateMapping()
 
 	canvas := svg.New(w)
