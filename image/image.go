@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/acooke1/chess"
 	svg "github.com/ajstarks/svgo"
 )
 
@@ -20,8 +21,8 @@ const (
 )
 
 var (
-	orderOfRanks = []Rank{Rank8, Rank7, Rank6, Rank5, Rank4, Rank3, Rank2, Rank1}
-	orderOfFiles = []File{File1, File2, File3, File4, File5, File6, File7, File8}
+	orderOfRanks = []chess.Rank{chess.Rank8, chess.Rank7, chess.Rank6, chess.Rank5, chess.Rank4, chess.Rank3, chess.Rank2, chess.Rank1}
+	orderOfFiles = []chess.File{chess.File1, chess.File2, chess.File3, chess.File4, chess.File5, chess.File6, chess.File7, chess.File8}
 )
 
 // TODO: wrap w param into a struct

@@ -20,7 +20,7 @@ type Board struct {
 	blackKingSquare Square
 }
 
-func newBoard(m map[Square]Piece) *Board {
+func NewBoard(m map[Square]Piece) *Board {
 	b := &Board{}
 	for _, p1 := range allPieces {
 		bm := map[Square]bool{}
@@ -36,16 +36,16 @@ func newBoard(m map[Square]Piece) *Board {
 	return b
 }
 
-func (b *Board) generateMapping() map[Square]Piece {
+func (b *Board) GenerateMapping() map[Square]Piece {
 	m := map[Square]Piece{}
 	for i := 0; i < numberOfSquaresInBoard; i++ {
 		sq := Square(i)
-		m[sq] = b.getPiece(sq)
+		m[sq] = b.GetPiece(sq)
 	}
 	return m
 }
 
-func (b *Board) getPiece(sq Square) Piece {
+func (b *Board) GetPiece(sq Square) Piece {
 	for _, p := range allPieces {
 		bb := b.bbForPiece(p)
 		if bb.Occupies(sq) {

@@ -21,7 +21,7 @@ func (sq Square) String() string {
 	return sq.File().String() + sq.Rank().String()
 }
 
-func newSquare(rank Rank, file File) Square {
+func NewSquare(rank Rank, file File) Square {
 	return Square(int8(rank)*numberOfSquaresInRow + int8(file))
 }
 
