@@ -26,7 +26,7 @@ var (
 )
 
 // TODO: wrap w param into a struct
-func generateBoardSVG(b *Board, w http.ResponseWriter) {
+func generateBoardSVG(b *chess.Board, w http.ResponseWriter) {
 	//pieceMap := b.generateMapping()
 
 	canvas := svg.New(w)
@@ -40,11 +40,11 @@ func generateBoardSVG(b *Board, w http.ResponseWriter) {
 		for j, file := range files {
 			x := j * sqHeight
 			y := i * sqWidth
-			sq := newSquare(rank, file)
+			sq := chess.NewSquare(rank, file)
 			c := sq.Color()
-			piece := b.getPiece(sq)
+			piece := b.GetPiece(sq)
 			canvas.Rect(x, y, sqWidth, sqHeight, "fill: "+colorToHex(c))
-			if piece != NoPiece {
+			if piece != chess.NoPiece {
 				file, err := os.ReadFile("./resources/BB.svg")
 				if err != nil {
 					panic(err)
