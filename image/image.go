@@ -1,4 +1,4 @@
-package visual
+package image
 
 import (
 	"fmt"
