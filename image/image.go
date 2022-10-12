@@ -5,7 +5,6 @@ import (
 	"image/color"
 	"io"
 	"net/http"
-	"os"
 	"strings"
 
 	"github.com/acooke1/chess"
@@ -47,11 +46,6 @@ func GenerateBoardSVG(b *chess.Board, w http.ResponseWriter) {
 			piece := b.GetPiece(sq)
 			canvas.Rect(x, y, sqWidth, sqHeight, "fill: "+colorToHex(c))
 			if piece != chess.NoPiece {
-				file, err := os.ReadFile("./resources/BB.svg")
-				if err != nil {
-					panic(err)
-				}
-				println(file)
 				io.WriteString(canvas.Writer, pieceXML(x, y, piece))
 			}
 		}
