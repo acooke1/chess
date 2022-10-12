@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"image/color"
 	"io"
-	"net/http"
 	"strings"
 
 	"github.com/acooke1/chess"
@@ -26,11 +25,26 @@ var (
 	orderOfFiles = []chess.File{chess.File1, chess.File2, chess.File3, chess.File4, chess.File5, chess.File6, chess.File7, chess.File8}
 )
 
-// TODO: wrap w param into a struct
-func GenerateBoardSVG(b *chess.Board, w http.ResponseWriter) {
+type encoder struct {
+	w io.Writer
+}
+
+func SVG(w io.Writer, b *chess.Board) error {
+	e := new(w)
+	return e.EncodeSVG(b)
+}
+
+func new(w io.Writer) *encoder {
+	e := &encoder{
+		w: w,
+	}
+	return e
+}
+
+func (e *encoder) EncodeSVG(b *chess.Board) error {
 	//pieceMap := b.generateMapping()
 
-	canvas := svg.New(w)
+	canvas := svg.New(e.w)
 	canvas.Start(boardWidth, boardHeight)
 	canvas.Rect(0, 0, boardWidth, boardHeight)
 
@@ -46,12 +60,15 @@ func GenerateBoardSVG(b *chess.Board, w http.ResponseWriter) {
 			piece := b.GetPiece(sq)
 			canvas.Rect(x, y, sqWidth, sqHeight, "fill: "+colorToHex(c))
 			if piece != chess.NoPiece {
-				io.WriteString(canvas.Writer, pieceXML(x, y, piece))
+				if _, err := io.WriteString(canvas.Writer, pieceXML(x, y, piece)); err != nil {
+					return err
+				}
 			}
 		}
 	}
 
 	canvas.End()
+	return nil
 }
 
 func pieceXML(x, y int, p chess.Piece) string {
