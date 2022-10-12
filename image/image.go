@@ -86,11 +86,12 @@ func colorToHex(c color.Color) string {
 
 var (
 	pieceTypeMap = map[chess.PieceType]string{
-		chess.King:   "K",
-		chess.Queen:  "Q",
-		chess.Rook:   "R",
-		chess.Bishop: "B",
-		chess.Knight: "N",
-		chess.Pawn:   "P",
+		chess.King:        "K",
+		chess.Queen:       "Q",
+		chess.Rook:        "R",
+		chess.Bishop:      "B",
+		chess.Knight:      "N",
+		chess.Pawn:        "P",
+		chess.NoPieceType: "ERR",
 	}
 )
